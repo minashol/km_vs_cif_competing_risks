@@ -555,7 +555,7 @@ plot_estimates_vs_lambda2<-function(summary_results){
     labs(
       title = "Estimated 5-year relapse risk",
       subtitle = "Naive Kaplan-Meier overestimates risk as competing risk increases",
-      x=expression(lambda[2] ~ "(death before relapse time)"),
+      x=expression(lambda[2] ~ "(death before relapse rate)"),
       y="Estimated relapse probability",
       linetype="Method"
     )+
@@ -590,7 +590,7 @@ plot_bias_vs_lambda2<-function(summary_results){
     labs(
       title="Bias in estimated 5-year relapse risk",
       subtitle="Bias of naive Kaplan-Meier increases with the competing risk event rate",
-      x=expression(lambda[2]~"(death before relapse time)"),
+      x=expression(lambda[2]~"(death before relapse rate)"),
       y="Bias",
       linetype="Method"
     )+
@@ -632,6 +632,35 @@ summary_n<-summarise_simulation_results(results_n)
 plot_estimates_vs_lambda2(summary_n)
 plot_bias_vs_lambda2(summary_n)
 
+sample_size_table <- summary_n |>
+  transmute(
+    n,
+    truth,
+    mean_km,
+    mean_cif,
+    bias_km,
+    bias_cif,
+    sd_km,
+    sd_cif
+  ) |>
+  mutate(across(where(is.numeric), ~ round(.x, 4)))
+
+sample_size_table
+
+kable(
+  sample_size_table_report,
+  caption = "Sample size sensitivity analysis.",
+  col.names = c(
+    "n",
+    "True CIF",
+    "Naive KM",
+    "CIF",
+    "KM bias",
+    "CIF bias",
+    "SD KM",
+    "SD CIF"
+  )
+)
 
 #====Now that we've created the model, let's get some results
 
@@ -692,6 +721,12 @@ write.csv(
 write.csv(
   diagnostic_table,
   file = "diagnostic_table.csv",
+  row.names=FALSE
+)
+
+write.csv(
+  sample_size_table,
+  file = "sample_size_table.csv",
   row.names=FALSE
 )
 
