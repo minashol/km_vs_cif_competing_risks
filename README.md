@@ -22,9 +22,9 @@ For each simulated individual, two event times are generated:
 
 The relapse rate is fixed at
 
-\[
+$$
 \lambda_1 = 0.08,
-\]
+$$
 
 while the competing event rate varies over
 
