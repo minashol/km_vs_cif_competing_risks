@@ -647,21 +647,6 @@ sample_size_table <- summary_n |>
 
 sample_size_table
 
-kable(
-  sample_size_table_report,
-  caption = "Sample size sensitivity analysis.",
-  col.names = c(
-    "n",
-    "True CIF",
-    "Naive KM",
-    "CIF",
-    "KM bias",
-    "CIF bias",
-    "SD KM",
-    "SD CIF"
-  )
-)
-
 #====Now that we've created the model, let's get some results
 
 results<-run_simulation_grid(
