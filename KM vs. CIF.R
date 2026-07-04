@@ -80,7 +80,7 @@ km_risk_t0<-1-km_1_t0
 
 km_risk_t0
 
-#Naive K-M estiamtes 5-year relapse risk around 33.4.
+#Naive K-M estimates 5-year relapse risk around 33.4.
 
 
 #CI for relapse risk
@@ -94,7 +94,7 @@ c(
   upper = km_upper_risk
 )
 
-# 95$ CI for relapse risk in 5 years is [0.3, 0.36]
+# 95% CI for relapse risk in 5 years is [0.3, 0.36]
 
 
 #----Computing CIF----------------------------------
